@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Meeting Templates</h2>
+    <div class="row">
+        {% for template_id, template in templates.items() %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ template.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Sections:</h6>
+                    <ul class="list-group list-group-flush mb-3">
+                        {% for section in template.sections %}
+                        <li class="list-group-item">{{ section }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ url_for('create_meeting_with_template', template_type=template_id) }}" 
+                       class="btn btn-primary">Use This Template</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
